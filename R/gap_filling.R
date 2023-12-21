@@ -76,8 +76,6 @@ GapFilling <- function(X, hierarchy.info, prediction.level,
     stop("gaps should be smaller than number of samples.")
   }
 
-  needs_preprocessing <- FALSE
-
   # Create a temporary directory if not provided
   # If provided, check if the path exists
   if (missing(tmp.dir)) {
@@ -92,17 +90,19 @@ GapFilling <- function(X, hierarchy.info, prediction.level,
     stop("tmp.dir: ", tmp.dir, "  does not exist")
   }
 
-  if (!needs_preprocessing) { # tmp directory is provided by user
-    if (!CheckPreprocessFilesExist(tmp.dir, 1, used.num.hierarchy.levels, prediction.level)) {
-      # return TRUE if files exists
-      needs_preprocessing <- TRUE
-    }
-  }
+  # Check whether preprocessing files are already provided in the tmp.dir
+  # or wheather they need to be created
+  needs_preprocessing <- !CheckPreprocessFilesExist(
+    tmp.dir,
+    1,
+    used.num.hierarchy.levels,
+    prediction.level
+  )
 
   if (verbose) {
     cat("needs_preprocessing: ", needs_preprocessing, "\n")
   }
-
+  # todo: Why is the num.folds set to 2 here and is hard coded?
   num.folds <- 2
 
   if (needs_preprocessing) {
