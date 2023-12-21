@@ -75,30 +75,37 @@ GapFilling <- function(X, hierarchy.info, prediction.level,
   if (gaps > num.samples) {
     stop("gaps should be smaller than number of samples.")
   }
-  preprocess.flag <- FALSE
+
+  needs_preprocessing <- FALSE
+
+  # Create a temporary directory if not provided
+  # If provided, check if the path exists
   if (missing(tmp.dir)) {
     tmp.dir <- paste(tempdir(), "/BHPMFAuthorsTmp", sep = "")
     if (file.exists(tmp.dir)) {
       unlink(tmp.dir, recursive = TRUE, force = TRUE)
     }
     dir.create(tmp.dir)
-    preprocess.flag <- TRUE
+    # todo: Why is the flag set to true here? Does this make sens?
+    needs_preprocessing <- TRUE
   } else if (!file.exists(tmp.dir)) {
     stop("tmp.dir: ", tmp.dir, "  does not exist")
   }
 
-  if (!preprocess.flag) { # tmp directory is provided by user
+  if (!needs_preprocessing) { # tmp directory is provided by user
     if (!CheckPreprocessFilesExist(tmp.dir, 1, used.num.hierarchy.levels, prediction.level)) {
       # return TRUE if files exists
-      preprocess.flag <- TRUE
+      needs_preprocessing <- TRUE
     }
   }
 
   if (verbose) {
-    cat("preprocess.flag: ", preprocess.flag, "\n")
+    cat("needs_preprocessing: ", needs_preprocessing, "\n")
   }
+
   num.folds <- 2
-  if (preprocess.flag) {
+
+  if (needs_preprocessing) {
     PreprocessCv(X, hierarchy.info, num.folds, tmp.dir, verbose)
     tmp.tune.dir <- paste(tmp.dir, "/fold1/Tunning", sep = "")
     cat(tmp.tune.dir, "\n")
