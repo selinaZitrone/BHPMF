@@ -58,8 +58,8 @@ create_test_infrastructure(tmp_dir = paste0(tempdir(), "/BHPMFtests/"))
 test_that("CheckPreprocessFilesExist returns TRUE if all files exist", {
   expect_equal(
     CheckPreprocessFilesExist(
-      tmp.dir = paste0(tempdir(), "/BHPMFtests/full"), num.folds = 2,
-      num.hierarchy.levels = 4, prediction.level = 4
+      tmp_dir = paste0(tempdir(), "/BHPMFtests/full"), num_folds = 2,
+      hierarchy_levels = 4, prediction_level = 4
     ),
     TRUE
   )
@@ -68,8 +68,8 @@ test_that("CheckPreprocessFilesExist returns TRUE if all files exist", {
 test_that("CheckPreprocessFilesExist returns FALSE if not all files exist", {
   expect_equal(
     CheckPreprocessFilesExist(
-      tmp.dir = paste0(tempdir(), "/BHPMFtests/empty"), num.folds = 2,
-      num.hierarchy.levels = 4, prediction.level = 4
+      tmp_dir = paste0(tempdir(), "/BHPMFtests/empty"), num_folds = 2,
+      hierarchy_levels = 4, prediction_level = 4
     ),
     FALSE
   )
