@@ -1,8 +1,7 @@
 find_folds <- function(X, level, num_folds, secondCV, output_dir) {
-    res <- countNumTraits(X, 0)
-    num_available_features_per_row <- res[[1]]
-    indObs <- res[[2]]
-    traitIds <- res[[3]]
+    res <- countNumTraits(X, keep_zeroes = FALSE)
+    num_available_features_per_row <- res$noTraits
+    traitIds <- res$traitIds
     rm(res)
 
     res <- generatePermutation(num_available_features_per_row, traitIds, num_folds)
