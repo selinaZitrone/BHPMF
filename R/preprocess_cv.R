@@ -43,10 +43,10 @@ PreprocessCv <- function(X, hierarchy.info, num.folds, tmp.dir, verbose) {
   # indObs:  a vector containing index of observation with at least one available trait
   # traitIds: containing index of available trait per observation
   # todo: Why is the NA flag here hardcoded to 1?
-  res <- countNumTraits(X, 1)
-  noTraits <- res[["noTraits"]]
-  indObs <- res[["indObs"]]
-  traitIds <- res[["traitIds"]]
+  res <- countNumTraits(X, keep_zeroes = TRUE)
+  noTraits <- res$noTraits
+  indObs <- res$indObs
+  traitIds <- res$traitIds
   fileName <- paste(tmp.dir, "/freqObsNoTraits_pmf.Rda", sep = "")
   save(noTraits, indObs, traitIds, file = fileName)
 
