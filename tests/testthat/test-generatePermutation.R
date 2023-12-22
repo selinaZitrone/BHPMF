@@ -8,21 +8,13 @@ test_generatePermutation <- function() {
   expect_equal(length(result), 2)
 
   # Test 2: Check if the matrices have the correct dimensions
-  expect_equal(dim(result[[1]]), c(2, 2),
-    label = "Test 2: Correct dimensions of test matrix"
-  )
-  expect_equal(dim(result[[2]]), c(2, 2),
-    label = "Test 2: Correct dimensions of validation matrix"
-  )
+  expect_equal(dim(result[[1]]), c(2, 2))
+  expect_equal(dim(result[[2]]), c(2, 2))
 
   # Test 3: Check if the function works correctly with one trait
   result <- generatePermutation(c(1), list(c(1)), 2)
-  expect_equal(result[[1]], matrix(c(1, 1), nrow = 1),
-    label = "Test 3: Correct test matrix with one trait"
-  )
-  expect_equal(result[[2]], matrix(c(1, 1), nrow = 1),
-    label = "Test 3: Correct validation matrix with one trait"
-  )
+  expect_equal(result[[1]], matrix(c(1, 1), nrow = 1))
+  expect_equal(result[[2]], matrix(c(1, 1), nrow = 1))
 }
 
 # Run the tests
