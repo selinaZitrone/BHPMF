@@ -1,3 +1,16 @@
+#' Generate Permutations of Trait IDs
+#'
+#' This function generates permutations of trait IDs for each observation across a specified number of folds.
+#'
+#' @param noTraits A vector containing the number of traits for each observation.
+#' @param traitIds A list where each element is a vector of trait IDs for a specific observation.
+#' @param numFolds The number of folds for which to generate permutations.
+#'
+#' @return A list containing two matrices:
+#' \itemize{
+#'   \item permutMatTest: A matrix where each row corresponds to an observation and each column corresponds to a fold. The element in the i-th row and j-th column is the j-th element of the permutation of trait IDs for the i-th observation for testing.
+#'   \item permutMatV: A matrix with the same structure as permutMatTest, but the permutations are shifted by one position for validation.
+#' }
 generatePermutation <- function(noTraits, traitIds, numFolds) {
     numObs <- length(noTraits)
     permutMatV <- matrix(numeric(0), nrow = numObs, ncol = numFolds)
