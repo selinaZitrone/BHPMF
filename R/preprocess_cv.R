@@ -1,14 +1,6 @@
 PreprocessCv <- function(X, hierarchy.info, num.folds, tmp.dir, verbose) {
   # Missing Values should be stored as NA
 
-  # source("countNumTraits.R")
-  # source("generatePermutation.R")
-  # source("splitData.R")
-  # source("findFold.R")
-  # source("buildUpperLevelMat.R")
-
-  # library(Matrix)
-
   if (!sum(is.na(X))) {
     stop("No missing value in X! Missing Values should be stored as NA.")
   }
