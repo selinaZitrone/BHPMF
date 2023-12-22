@@ -1,5 +1,5 @@
 # Count the number of traits per observation
-countNumTraits <- function(X, flagNan) {
+countNumTraits <- function(X, keep_zeroes) {
 
     # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     # find number of traits for each observation
@@ -11,7 +11,7 @@ countNumTraits <- function(X, flagNan) {
     traitIds <- vector("list", numRows)
 
     for (plantId in 1:numRows) {
-        if (flagNan) {
+        if (keep_zeroes) {
             traitId <- which(!is.na(X[plantId, ]))
         } else {
             traitId <- which(X[plantId, ] != 0)
