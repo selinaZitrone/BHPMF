@@ -3,9 +3,8 @@ find_folds <- function(X, level, num_folds, secondCV, output_dir) {
     num_available_features_per_row <- res$noTraits
     traitIds <- res$traitIds
     rm(res)
-
     res <- generatePermutation(num_available_features_per_row, traitIds, num_folds)
-    permutMatTest <- res[[1]]
+    permutMatTest <- res$permutation_test
     rm(res)
 
     # find index of rows with more than two avialble features

@@ -35,5 +35,8 @@ generatePermutation <- function(noTraits, traitIds, numFolds) {
         permutMatTest[id, ] <- permt[1:numFolds]
         permutMatV[id, ] <- permv[1:numFolds]
     }
-    return(list(permutMatTest, permutMatV))
+    return(list(
+        permutation_test = permutMatTest,
+        permutation_validation = permutMatV
+    ))
 }
