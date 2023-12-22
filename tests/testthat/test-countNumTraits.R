@@ -5,7 +5,7 @@ test_that("countNumTraits counts traits correctly when there are no missing or z
     NULL,
     c("trait1", "trait2", "trait3")
   ))
-  result <- countNumTraits(X_test, flagNan = FALSE)
+  result <- countNumTraits(X_test, keep_zeroes = FALSE)
 
   expect_equal(result$noTraits, c(3, 3))
   expect_equal(result$indObs, c(1, 2))
@@ -20,7 +20,7 @@ test_that("countNumTraits counts traits correctly when there are missing values 
     NULL,
     c("trait1", "trait2", "trait3")
   ))
-  result <- countNumTraits(X_test, flagNan = TRUE)
+  result <- countNumTraits(X_test, keep_zeroes = TRUE)
 
   expect_equal(result$noTraits, c(2, 2))
   expect_equal(result$indObs, c(1, 2))
@@ -35,7 +35,7 @@ test_that("countNumTraits counts traits correctly when there are zero values and
     NULL,
     c("trait1", "trait2", "trait3")
   ))
-  result <- countNumTraits(X_test, flagNan = FALSE)
+  result <- countNumTraits(X_test, keep_zeroes = FALSE)
 
   expect_equal(result$noTraits, c(2, 2))
   expect_equal(result$indObs, c(1, 2))
