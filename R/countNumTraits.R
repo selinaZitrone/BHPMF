@@ -1,3 +1,4 @@
+# Count the number of traits per observation
 countNumTraits <- function(X, flagNan) {
 
     # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,5 +23,5 @@ countNumTraits <- function(X, flagNan) {
 
     indObs <- which(noTraits > 0)
 
-    return(list(noTraits, indObs, traitIds))
+    return(list(noTraits = noTraits, indObs = indObs, traitIds = traitIds))
 }
