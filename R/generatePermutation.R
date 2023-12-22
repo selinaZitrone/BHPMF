@@ -5,23 +5,18 @@ generatePermutation <- function(noTraits, traitIds, numFolds) {
 
     # generate all test, and validation
     for (id in 1:numObs) {
-        permt <- c()
-        permv <- c()
-
-        while (length(permt) < numFolds) {
-            traitId <- traitIds[[id]]
-            len <- length(traitId)
-            if (len == 1) {
-                permt <- rep(traitId, numFolds)
-                permv <- rep(traitId, numFolds)
-                break
-            } else {
-                ranPermT <- sample(traitId, len, replace = FALSE)
-                ranPermV <- c(ranPermT[2:len], ranPermT[1])
-
-                permt <- c(permt, ranPermT)
-                permv <- c(permv, ranPermV)
-            }
+        traitId <- traitIds[[id]]
+        len <- length(traitId)
+        # if there is only one trait, just take this trait and repeate it numFolds times
+        if (len == 1) {
+            permt <- rep(traitId, numFolds)
+            permv <- rep(traitId, numFolds)
+        } else {
+            # scramble the order of traits for the observation
+            permt <- sample(traitId, len, replace = FALSE)
+            # shift the order of traits for the observation
+            # move the first trait to the end of the vec
+            permv <- c(permt[2:len], permt[1])
         }
 
         permutMatTest[id, ] <- permt[1:numFolds]
